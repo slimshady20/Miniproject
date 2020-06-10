@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jayden.web.mappers.TravelMapper">
+
+<select id="selectTravels" resultType="com.jayden.web.travels.TravelDTO"
+                            parameterType="com.jayden.web.travels.TravelDTO">
+            select     seqNo, areaNm, stationNm, statCd, statlnNm, statoutNO, etcSt ,urlSt
+            from travel
+
+</select>
+
+
+
+</mapper>

@@ -23,8 +23,8 @@
             <v-layout align-center justify-center row wrap>
                 <v-flex xs6>
                     <v-form>
-                        <v-text-field outline label = "지하철 역을 검색해보세요."></v-text-field>
-                        <h3 @click="home">검색하기</h3>
+                        <v-text-field v-model="searchWord" outline label = "지하철 역을 검색해보세요."></v-text-field>
+                        <h3 @click="search">검색하기</h3>
                     </v-form>
                 </v-flex>
             </v-layout>
@@ -40,8 +40,17 @@
 <script>
 
     export default {
-        name: "Home",
+        data() {
+            return { searchWord: ''};
+        },
+        methods:{
+            search(){
+                if(this.searchWord == "지하철역") {
+                    this.$store.dispatch('travel/search', this.searchWord)
+                }
 
+            }
+        }
     }
 
 </script>
