@@ -1,24 +1,26 @@
-import router from "@/router"
+ import router from "@/router"
 import axios from "axios"
 const state={
-    context: 'http://localhost:5000',
+    context: 'http://localhost:5000/',
     searchWord:'null'
 }
 const actions ={
-    async find({commit}, searchWord){
-        alert("action 확인")
-        commit("SEARCHWORD", searchWord)
-        if(searchWord == "지하철역"){
-            router.push('/Travel')
-        }
-
-    },
+    // async find({commit}, searchWord){
+    //     alert("action 확인")
+    //     commit("SEARCHWORD", searchWord)
+    //     if(searchWord == "지하철역"){
+    //         router.push('/Travel')
+    //     }
+    //
+    // },
     async search({commit},searchWord) {
-        alert("검색어" + searchWord)
-        axios.get(state.context+ `travel/{searchWord}`)
+        alert("검색어   " + searchWord)
+        console.log("state.context" + state.context)
+        axios.get(state.context+ `travels/${searchWord}`)
             .then(({data}) => {
                 alert("ㅇㅇ")
                 commit('SEARCH', data)
+                router.push('/Travel')
 
             })
             .catch(() => {

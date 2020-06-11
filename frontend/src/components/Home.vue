@@ -45,7 +45,7 @@
         },
         methods:{
             search(){
-                if(this.searchWord == "지하철역") {
+                if(this.searchWord === "지하철역") {
                     this.$store.dispatch('travel/search', this.searchWord)
                 }
 

@@ -4,9 +4,16 @@
 <mapper namespace="com.jayden.web.mappers.TravelMapper">
 
 <select id="selectTravels" resultType="com.jayden.web.travels.TravelDTO"
-                            parameterType="com.jayden.web.travels.TravelDTO">
-            select     seqNo, areaNm, stationNm, statCd, statlnNm, statoutNO, etcSt ,urlSt
+                            parameterType="com.jayden.web.proxy.Pager">
+            select  seq_no seqNo, area_nm areaNm, stat_nm stationNm, stat_cd statCd, statln_nm statlnNm, statout_no statoutNO,
+             etc_st etcSt ,url_st urlSt
             from travel
+
+<!--            <if  test="searchWord != null">-->
+<!--                where statNm like '%${searchWord}%'-->
+<!--            </if>-->
+<!--&#45;&#45;             limit #{rowStart}, #{pageSize}-->
+
 
 </select>
 
