@@ -50,9 +50,9 @@ public class TravelController {
     @GetMapping("/{searchWord}")
        public Map<?,?> Travel(@PathVariable String searchWord) {
         System.out.println("넘어온 키워드" + searchWord);
-//        pager.setBlockSize(5);
-//        pager.setPageSize(10);
-//        pager.paging();
+        pager.setBlockSize(5);
+        pager.setPageSize(10);
+        pager.paging();
         IFunction<Pager, List<TravelDTO>> f = p -> travelMapper.selectTravels(p);
         List<TravelDTO> list = f.apply(pager);
         System.out.println("****************************");
