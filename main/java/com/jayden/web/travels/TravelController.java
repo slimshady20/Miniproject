@@ -48,7 +48,7 @@ public class TravelController {
 //    }
 
     @GetMapping("/{searchWord}")
-       public Map<?,?> Travel(@PathVariable String searchWord) {
+       public Map<?,?> list(@PathVariable String searchWord) {
         System.out.println("넘어온 키워드" + searchWord);
         pager.setBlockSize(5);
         pager.setPageSize(10);

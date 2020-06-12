@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 public class TravelDTO {
-    private String seqNo, areaNm, stationNm, statCd, statlnNm, statoutNO, etcSt ,urlSt;
+    private String seqNo, areaNm, statNm, statCd, statlnNm, statoutNo, etcSt ,urlSt;
 
 
 
