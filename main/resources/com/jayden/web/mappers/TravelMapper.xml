@@ -13,7 +13,7 @@
                  statout_no statoutNo,
              etc_st etcSt,
              url_st urlSt
-            from travel
+            from travel2
 
             <if  test="searchWord != null">
                 where stat_nm  like '%${searchWord}%'
@@ -24,7 +24,7 @@
 </select>
     <select id="count" resultType="int">
     select count(*)
-    from travel
+    from travel2
 </select>
 
 </mapper>
