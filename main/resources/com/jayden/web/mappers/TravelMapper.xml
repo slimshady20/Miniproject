@@ -16,7 +16,7 @@
             from travel
 
             <if  test="searchWord != null">
-                where statNm like '%${searchWord}%'
+                where stat_nm  like '%${searchWord}%'
             </if>
             limit #{rowStart}, #{pageSize}
 

@@ -19,39 +19,21 @@ public class TravelController {
     @Autowired Pager pager;
     @Autowired TravelMapper travelMapper;
     @Autowired Box<Object> box;
+    @GetMapping("/{searchWord}/{pageNumber}")
+    public Map<?,?> list(@PathVariable("pageNumber") String pageNumber,
+                         @PathVariable("searchWord") String searchWord){
 
-//    public Map<?,?> list(@PathVariable("pageNumber") String pageNumber,
-//                         @PathVariable("searchWord") String searchWord){
-//
-//        if(searchWord.equals("null")){
-//            System.out.println("검색어가 없음");
-//            pager.setSearchWord("");
-//        }else{
-//            System.out.println("검색어가" + searchWord);
-//            pager.setSearchWord(searchWord);
-//        }
-//        System.out.println("넘어온 페이지 번호"+pageNumber);
-//        pager.setNowPage(Integer.parseInt((pageNumber)));
-//        pager.setBlockSize(5);
-//        pager.setPageSize(10);
-//        pager.paging();
-//        IFunction<Pager, List<TravelDTO>> f = p -> travelMapper.selectTravels(p);
-//        List<TravelDTO> list = f.apply(pager);
-//        System.out.println("****************************");
-//        for(TravelDTO m : list) {
-//            System.out.println(m.toString());
-//        }
-//        box.clear();
-//        box.put("pager",pager);
-//        box.put("list",list);
-//        return box.get();
-//    }
-
-    @GetMapping("/{searchWord}")
-       public Map<?,?> list(@PathVariable String searchWord) {
-        System.out.println("넘어온 키워드" + searchWord);
+        if(searchWord.equals("null")){
+            System.out.println("검색어가 없음");
+            pager.setSearchWord("");
+        }else{
+            System.out.println("검색어가" + searchWord);
+            pager.setSearchWord(searchWord);
+        }
+        System.out.println("넘어온 페이지 번호"+pageNumber);
+        pager.setNowPage(Integer.parseInt((pageNumber)));
         pager.setBlockSize(5);
-        pager.setPageSize(10);
+        pager.setPageSize(20);
         pager.paging();
         IFunction<Pager, List<TravelDTO>> f = p -> travelMapper.selectTravels(p);
         List<TravelDTO> list = f.apply(pager);
@@ -62,6 +44,26 @@ public class TravelController {
         box.clear();
         box.put("pager",pager);
         box.put("list",list);
+        return box.get();
+    }
+
+    @GetMapping("/{searchWord}")
+    public Map<?,?> list(@PathVariable String searchWord) {
+        System.out.println("넘어온 키워드" + searchWord);
+
+        pager.setBlockSize(5);
+        pager.setPageSize(20);
+        pager.paging();
+        IFunction<Pager, List<TravelDTO>> f = p -> travelMapper.selectTravels(p);
+        List<TravelDTO> list = f.apply(pager);
+        System.out.println("****************************");
+        for(TravelDTO m : list) {
+            System.out.println(m.toString());
+        }
+        box.clear();
+        box.put("pager",pager);
+        box.put("list",list);
+        System.out.println(box.get("pager"));
         return box.get();
     }
 }
