@@ -8,7 +8,7 @@
         >
             <v-spacer></v-spacer>
             <div class="my-2">
-                <v-btn text large>Login</v-btn>
+                <v-btn text large @click="login">Login</v-btn>
 
             </div>
             <div class="my-2">
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-
+    import router from "@/router"
     export default {
         data() {
             return { searchWord: ''};
@@ -48,7 +48,9 @@
                 if(this.searchWord === "여행하러가기") {
                     this.$store.dispatch('travel/search', this.searchWord)
                 }
-
+            },
+            login(){
+                router.push('/Login')
             }
         }
     }

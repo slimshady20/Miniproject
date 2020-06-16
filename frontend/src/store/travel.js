@@ -8,7 +8,8 @@ const state={
     travels:[],
     list:[],
     pages:[],
-    pager:{}
+    pager:{},
+
 }
 const actions ={
     async search({commit},searchWord) {
@@ -30,18 +31,18 @@ const actions ={
         alert(`${state.context}/${payload.cate}/${payload.searchWord}/${payload.pageNumber}`)
             // 이부분 질문.
         axios.
-        get(`${state.context2}/${payload.cate}/${payload.searchWord}/${payload.pageNumber}`)
+        get(`${state.context}/${payload.cate}/${payload.searchWord}/${payload.pageNumber}`)
             .then(({data})=>{
                 commit("TRANSFER",data)
             })
             .catch()
     },
+
 }
 const mutations={
     SEARCH(state,data){
         alert(`뮤테이션: ${data}`)
         //  state.searchWord = data
-        state.travels=[]
         data.list.forEach(item=>{
             state.travels.push({
                 seqNo: item.seqNo,
@@ -64,6 +65,7 @@ const mutations={
     },
     TRANSFER(state,data){
         state.travels=[]
+        console.log("data" +data)
         data.list.forEach(item=>{
             state.travels.push({
                 seqNo: item.seqNo,
