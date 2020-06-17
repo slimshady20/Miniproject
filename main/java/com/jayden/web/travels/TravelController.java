@@ -33,14 +33,14 @@ public class TravelController {
         System.out.println("넘어온 페이지 번호"+pageNumber);
         pager.setNowPage(Integer.parseInt((pageNumber)));
         pager.setBlockSize(5);
-        pager.setPageSize(20);
+        pager.setPageSize(10);
         pager.paging();
         IFunction<Pager, List<TravelDTO>> f = p -> travelMapper.selectTravels(p);
         List<TravelDTO> list = f.apply(pager);
         System.out.println("****************************");
         for(TravelDTO m : list) {
             System.out.println(m.toString());
-        }
+        }// 향상된 for 문 p 166 for(타입변수명 : 배열 또는 컬렉션) {  반복할 문장 }
         box.clear();
         box.put("pager",pager);
         box.put("list",list);
@@ -52,7 +52,7 @@ public class TravelController {
         System.out.println("넘어온 키워드" + searchWord);
 
         pager.setBlockSize(5);
-        pager.setPageSize(20);
+        pager.setPageSize(10);
         pager.paging();
         IFunction<Pager, List<TravelDTO>> f = p -> travelMapper.selectTravels(p);
         List<TravelDTO> list = f.apply(pager);

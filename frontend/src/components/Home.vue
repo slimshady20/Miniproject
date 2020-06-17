@@ -12,7 +12,7 @@
 
             </div>
             <div class="my-2">
-                <v-btn text large>Sign-up</v-btn>
+                <v-btn text large @click="signup">Sign-up</v-btn>
             </div>
 
         </v-app-bar>
@@ -51,7 +51,11 @@
             },
             login(){
                 router.push('/Login')
+            },
+            signup(){
+                router.push('/Signup')
             }
+
         }
     }
 

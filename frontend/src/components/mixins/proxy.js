@@ -8,6 +8,7 @@ export const proxy={
             const travels=[]
             const pages= []
             let temp ={}
+            alert(url)
             axios
                 .get(url)
                 .then(({data})=>{
@@ -24,6 +25,7 @@ export const proxy={
                     temp.existNext = pager.existNext
                     temp.nextBlock = pager.nextBlock
                     temp.prevBlock = pager.prevBlock
+                    temp.pageSize= pager.pageSize
 
                 })
                 .catch(err=> {
