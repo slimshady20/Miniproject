@@ -8,7 +8,9 @@
         >
             <v-spacer></v-spacer>
             <div class="my-2">
-                <v-btn text large @click="login">Login</v-btn>
+                <v-btn text large v-if="loggedin" v-on:click="logout">LOGOUT</v-btn>
+                <v-btn text large v-else v-on:click="login">Login</v-btn>
+
 
             </div>
             <div class="my-2">
@@ -39,14 +41,22 @@
 
 <script>
     import router from "@/router"
+    import firebase from "firebase";
     export default {
+        mounted() {
+            firebase.auth().onAuthStateChanged(user=>{
+                user ? this.loggedin=true: this.loggedin=false;
+            })
+        },
         data() {
-            return { searchWord: ''};
+            return { searchWord: '',
+                     loggedin: false};
         },
         methods:{
             search(){
                 if(this.searchWord === "여행하러가기") {
-                    this.$store.dispatch('travel/search', this.searchWord)
+                     this.$store.dispatch('travel/search', this.searchWord)
+
                 }
             },
             login(){
@@ -54,6 +64,13 @@
             },
             signup(){
                 router.push('/Signup')
+            },
+            logout(){
+               firebase.auth().signOut().then(()=>{
+                   alert("로그아웃하였습니다.")
+                   this.$router.replace('/login')
+               })
+
             }
 
         }

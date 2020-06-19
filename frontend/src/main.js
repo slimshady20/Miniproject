@@ -8,7 +8,6 @@ import {store} from './store';
 import firebase from 'firebase'
 
 Vue.config.productionTip = false
-
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyCHJtqT2Y2scPUir_uQ2Qy-48dJucWFrjA",
@@ -23,6 +22,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+//
 new Vue({
   vuetify,
   router,

@@ -53,7 +53,7 @@
 </template>
 
 <script>
-    import router from '@/router'
+  //  import router from '@/router'
     import firebase from 'firebase'
     var provider = new firebase.auth.FacebookAuthProvider()
     provider.addScope('public_profile')
@@ -62,34 +62,43 @@
         'display':'popup'
     })
     export default {
-        data: ()=> ({
-            email: '',
-            password: ''
-        }),
         methods:{
-            login() {
-                firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-                    function() {
-                        alert('로그인 완료!')
-                        router.push('/')
-                    },
-                    function(err) {
-                        alert('에러 : ' + err.message)
-                    }
-                );
-            },
+        login: function () {
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                .then(() => {
+                    console.log("####", this);
+                    return firebase
+                        .auth()
+                        .signInWithEmailAndPassword(this.email, this.password);
+                })
+                .then(() => {
+                    const user = firebase.auth().currentUser;
+                    console.log(user);
+                    alert(`로그인 완료 ${user.email} 님 환영합니다.`);
+                    this.$router.push("/");
+                })
+                .catch(err =>{
+                    alert("에러 "+ err.message)
+            })
+        },
             facebookLogin(){
                 firebase.auth().signInWithPopup(provider).then((result)=>{
                     var token = result.credential.accessToken
                     var user = result.user
                     console.log("token: " + token)
                     console.log("user " + user)
-                    this.$router.replace('welcome')
+                    this.$router.replace('/')
                 }).catch((err)=>{
-                    alert("에러" + err._message)
+                    alert("에러" + err.message)
                 })
             }
-        }
+        },
+        data: ()=> ({
+            email: '',
+            password: ''
+        }),
+
+
     }
 </script>
 

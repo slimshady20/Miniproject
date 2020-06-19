@@ -48,16 +48,29 @@
                         }
                 },
                 methods: {
-                        signUp() {
-                                firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-                                        function() {
-                                                alert('회원가입 완료!')
+                        signUp: function () {
+                                firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+                                        .then(() => {
+                                                alert("회원가입을 완료하였습니다.")
+                                                this.$router.replace('/login')
                                         },
                                         function(err) {
                                                 alert('에러 : ' + err.message)
                                         }
                                 );
                         }
+
+                        // signUp() {
+                        //         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+                        //                 function() {
+                        //                         alert('회원가입 완료!')
+                        //                         router.push('/Login')
+                        //                 },
+                        //                 function(err) {
+                        //                         alert('에러 : ' + err.message)
+                        //                 }
+                        //         );
+                        // }
                 }
         }
 </script>
